@@ -1,0 +1,46 @@
+거래소 로직
+<?php
+
+class Exchange {
+    private $users = [];
+    private $orders = [];
+
+    public function registerUser($username, $password) {
+        // 사용자 등록 로직
+    }
+
+    public function login($username, $password) {
+        // 로그인 로직
+    }
+
+    public function placeOrder($userId, $type, $amount, $price) {
+        // 주문을 처리하는 로직
+    }
+
+    public function executeOrders() {
+        // 거래 엔진의 일부로, 주문을 일치시키고 체결하는 로직
+    }
+
+    public function getUserBalance($userId) {
+        // 사용자의 잔고를 조회하는 로직
+    }
+}
+
+// 사용 예시
+$exchange = new Exchange();
+$exchange->registerUser('user1', 'password1');
+$exchange->registerUser('user2', 'password2');
+$exchange->login('user1', 'password1');
+
+$exchange->placeOrder('user1', 'buy', 10, 100);
+$exchange->placeOrder('user2', 'sell', 10, 100);
+
+$exchange->executeOrders();
+
+$user1Balance = $exchange->getUserBalance('user1');
+$user2Balance = $exchange->getUserBalance('user2');
+
+echo "User1 Balance: $user1Balance\n";
+echo "User2 Balance: $user2Balance\n";
+
+?>
