@@ -1,0 +1,33 @@
+엑셀 들여오기 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Import from Excel</title>
+</head>
+<body>
+    <input type="file" id="fileInput" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+    <button onclick="importFromExcel()">Import from Excel</button>
+
+    <script>
+        function importFromExcel() {
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput.files[0];
+
+            if (file) {
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    const contents = e.target.result;
+                    // 이제 contents를 파싱하여 데이터를 처리합니다.
+                    // 이 예제에서는 간단하게 콘솔에 출력하는 것으로 대체합니다.
+                    console.log(contents);
+                };
+
+                reader.readAsText(file);
+            }
+        }
+    </script>
+</body>
+</html>
