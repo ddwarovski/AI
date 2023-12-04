@@ -1,0 +1,58 @@
+엑셀 내보내기
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Export to Excel</title>
+</head>
+<body>
+    <table id="exportTable">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>John Doe</td>
+                <td>john.doe@example.com</td>
+            </tr>
+            <tr>
+                <td>Jane Doe</td>
+                <td>jane.doe@example.com</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <button onclick="exportToExcel()">Export to Excel</button>
+
+    <script>
+        function exportToExcel() {
+            const table = document.getElementById('exportTable');
+            const rows = table.querySelectorAll('tr');
+            const csvContent = [];
+
+            rows.forEach(row => {
+                const rowData = [];
+                row.querySelectorAll('td, th').forEach(cell => {
+                    rowData.push(cell.innerText);
+                });
+                csvContent.push(rowData.join(','));
+            });
+
+            const csv = csvContent.join('\n');
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            const url = URL.createObjectURL(blob);
+            
+            link.setAttribute('href', url);
+            link.setAttribute('download', 'exported_data.csv');
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    </script>
+</body>
+</html>
