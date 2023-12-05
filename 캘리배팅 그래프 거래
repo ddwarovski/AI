@@ -1,0 +1,32 @@
+캘리배팅 그래프 외환거래 
+import random
+
+class FXTradingBot:
+    def __init__(self):
+        self.balance = 10000  # 초기 자본
+        self.trade_count = 0   # 거래 횟수
+
+    def execute_trade(self, action):
+        # 간단한 트레이딩 로직
+        if action == 'buy':
+            # 매수 로직 추가
+            self.balance -= 100  # 매수 비용
+            self.trade_count += 1
+            print(f"매수 - 현재 잔고: {self.balance}, 거래 횟수: {self.trade_count}")
+        elif action == 'sell':
+            # 매도 로직 추가
+            self.balance += 150  # 매도 이익
+            self.trade_count += 1
+            print(f"매도 - 현재 잔고: {self.balance}, 거래 횟수: {self.trade_count}")
+        else:
+            print("잘못된 거래 신호")
+
+    def cali_betting(self, num_trades=100):
+        for _ in range(num_trades):
+            # 간단한 랜덤한 거래 결정
+            action = random.choice(['buy', 'sell'])
+            self.execute_trade(action)
+
+if __name__ == "__main__":
+    trading_bot = FXTradingBot()
+    trading_bot.cali_betting()
