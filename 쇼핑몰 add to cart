@@ -1,0 +1,18 @@
+<?php
+session_start();
+
+// 여기에 제품을 장바구니에 추가하는 코드를 추가
+if (isset($_GET['id'])) {
+    $productId = $_GET['id'];
+
+    // 세션에 장바구니 정보 저장
+    if (!isset($_SESSION['cart'])) {
+        $_SESSION['cart'] = array();
+    }
+
+    array_push($_SESSION['cart'], $productId);
+}
+
+// 제품 목록 페이지로 이동
+header('Location: products.php');
+?>
