@@ -1,0 +1,30 @@
+<?php
+// 여기에 제품 목록을 불러오는 코드를 추가
+$products = array(
+    array('id' => 1, 'name' => '리빙 제품', 'price' => 20),
+    array('id' => 2, 'name' => '가구 제품', 'price' => 50),
+    array('id' => 3, 'name' => '반팔티', 'price' => 15),
+    array('id' => 4, 'name' => '향수', 'price' => 30)
+);
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>제품 목록</title>
+</head>
+<body>
+    <h2>제품 목록</h2>
+    <ul>
+        <?php foreach ($products as $product): ?>
+            <li>
+                <?php echo $product['name']; ?> -
+                가격: $<?php echo $product['price']; ?>
+                <a href="addToCart.php?id=<?php echo $product['id']; ?>">장바구니에 추가</a>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+</body>
+</html>
