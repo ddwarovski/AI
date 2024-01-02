@@ -1,0 +1,37 @@
+<?php
+// API 키
+$api_key = '여기에_발급받은_키_입력';
+
+// API 엔드포인트
+$api_url = 'https://api.example.com/taxi_fare';
+
+// 요청 파라미터
+$params = [
+    'start_location' => '출발지_좌표',
+    'end_location'   => '도착지_좌표',
+];
+
+// API 요청 보내기
+$url = $api_url . '?' . http_build_query($params);
+$ch = curl_init($url);
+
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_HTTPHEADER, ['Authorization: Bearer ' . $api_key]);
+
+$response = curl_exec($ch);
+curl_close($ch);
+
+// 응답 처리
+if ($response) {
+    $data = json_decode($response, true);
+
+    // 필요한 데이터 추출
+    $fare = $data['fare'];
+
+    // 추출한 데이터 사용
+    echo "기본 택시 요금: $fare";
+} else {
+    // 에러 처리
+    echo "API 요청 실패";
+}
+?>
